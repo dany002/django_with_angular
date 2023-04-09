@@ -8,7 +8,7 @@ import {AddFruitDto, Fruit} from "../features/fruits/components/overview/models/
 })
 export class ServicesApiServiceService {
 
-  baseUrl = 'http://127.0.0.1:8000/api';
+  baseUrl = 'http://localhost/api';
 
   constructor(private http:HttpClient) { }
 
