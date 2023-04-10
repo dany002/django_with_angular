@@ -15,6 +15,7 @@ services:
     command: gunicorn djangoProject.wsgi:application --bind 0.0.0.0:8000
     volumes:
       - .:/code
+      - static_volume:/code/static
     ports:
       - "8000:8000"
     environment:
@@ -24,14 +25,14 @@ services:
     depends_on:
       - db
 
-  nginx:
+  nginx_django:
     image: nginx
     ports:
       - "80:80"
     volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx/django.conf:/etc/nginx/nginx.conf
       - ./logs:/var/log/nginx
-
+      - static_volume:/static
     logging:
       driver: "local"
       options:
@@ -41,7 +42,23 @@ services:
         max-file: "10"
     depends_on:
       - web
-    container_name: nginx_container
+    container_name: nginx_django
+
+  angular:
+    image: image_angular
+    ports:
+      - "4200:90"
+#    build:
+#      context: ./frontend/my-app
+#      dockerfile: Dockerfile
+#    command: ng serve
+#    volumes:
+#      - ./frontend/my-app:/app
+#    ports:
+#      - "4200:90"
+#    depends_on:
+#      - web
+
 
   migrations:
     build: .
