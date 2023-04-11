@@ -48,16 +48,6 @@ services:
     image: image_angular
     ports:
       - "4200:90"
-#    build:
-#      context: ./frontend/my-app
-#      dockerfile: Dockerfile
-#    command: ng serve
-#    volumes:
-#      - ./frontend/my-app:/app
-#    ports:
-#      - "4200:90"
-#    depends_on:
-#      - web
 
 
   migrations:

@@ -17,9 +17,6 @@ if __name__ == "__main__":
 
     fruit_name = fake.fruit()
 
-    print(fruit_name)
     n = 100
     for _ in range(n):
-        print(fake.fruit())
-        print(round(random.uniform(0, 100), 2))
         Fruit.objects.create(name=fake.fruit(),price=round(random.uniform(0, 100), 2))
